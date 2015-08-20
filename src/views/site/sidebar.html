@@ -1,0 +1,21 @@
+<div class="window">
+    <h2 class="title">Upcoming Events</h2>
+    <div class="content">
+        <div class="events">
+            {% for event in app.events.getUpcomingEvents() %}
+                <div class="event">
+                    <div class="date">
+                        <span class="month">{{ event.datetime|date('M') }}</span>
+                        <span class="day">{{ event.datetime|date('d') }}</span>
+                    </div>
+                    <h2 class="title">{{ event.title }}</h2>
+                    <p class="time">{{ event.datetime|date('h:i a') }}</p>
+                    <div class="description">{{ event.description }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="footer">
+        <a href="{{ path('site.events') }}">View all events</a>
+    </div>
+</div>

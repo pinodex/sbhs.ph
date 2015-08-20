@@ -1,0 +1,58 @@
+{% extends '@dashboard/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row page-header">
+        <div class="medium-8 columns title">
+            <h1><i class="fi-torsos"></i> Accounts</h1>
+        </div>
+        <div class="medium-4 columns actions">
+            <a href="{{ path('dashboard.accounts.create') }}" class="button tiny radius"><i class="fi-plus"></i> Create Account</a>
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-12 columns alert-box-container">
+                    {% if messageFlash %}
+                        {% for message in messageFlash %}
+                            {% set message = message|split('::') %}
+                            {% if message|length > 1 %}
+                                <div class="alert-box radius {{ message[0] }}">{{ message[1] }}</div>
+                            {% else %}
+                                <div class="alert-box radius secondary">{{ message[0] }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <table style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Account Type</th>
+                                <th>Last Login</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for account in accounts %}
+                                <tr>
+                                    <td>{{ account.name }}</td>
+                                    <td>{{ account.username }}</td>
+                                    <td>{{ account.email }}</td>
+                                    <td>{{ app.accounts.getAccountType(account.acctype) }}</td>
+                                    <td>{{ account.last_login ? account.last_login|date('M d, Y - h:i a') : 'None Recorded' }}</td>
+                                    <td><a href="{{ path('dashboard.accounts.edit', {id: account.id}) }}">Edit</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

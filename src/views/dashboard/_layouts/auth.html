@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="utf-8" />
+    
+    <!--    
+    
+    ╭──────────────────────────────────────────╮
+    │ ≡ Front-end & Back-end                   │
+    ╞══════════════════════════════════════════╡
+    │ RAPHAEL MARCO                            │
+    ├──────────┬───────────────────────────────┤
+    │ Email    │ pinodex@outlook.ph            │
+    ├──────────┼───────────────────────────────┤
+    │ Twitter  │ @pinodexxd                    │
+    ├──────────┼───────────────────────────────┤
+    │ Location │ Manila, PH                    │
+    ╰──────────┴───────────────────────────────╯
+    
+    -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% for css in app.assets.getDashboardCss() %}
+        <link rel="stylesheet" type="text/css" href="{{ css }}" />
+    {% endfor %}
+    <title>{{ page_title }} | Dashboard - San Bartolome High School</title>
+</head>
+<body>
+    {% block content %}{% endblock %}
+    {% for js in app.assets.getDashboardJs() %}
+        <script src="{{ js }}"></script>
+    {% endfor %}
+</body>
+</html>

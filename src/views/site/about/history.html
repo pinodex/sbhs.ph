@@ -1,0 +1,133 @@
+{% extends '@site/_layouts/default.html' %}
+
+{% set noSidebar = true %}
+
+{% block content %}
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="window clean">
+                <h2 class="title">History</h2>
+            </div>
+            <ul class="timeline">
+                <li class="timeline-inverted">
+                    <div class="timeline-badge"><small>present</small>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">SBHS on present</h3>
+                        </div>
+                        <div class="timeline-image"><img src="{{ app.assets.get('/photos/sbhs-new.jpg') }}" alt="" class="tfw">
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-badge">2011</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-content tlbg p-3">
+                            <h3 class="timeline-title">Principal 2011-<em>present</em></h3>
+                            <p><strong>Dr. Modesto Villarin</strong>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-badge">2006</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-content tlbg p-2">
+                            <h3 class="timeline-title">Principal 2006-2011</h3>
+                            <p><strong>Mrs. Lourdes E. Barlis</strong>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-badge">2002</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">First Valedictorian and Salutatorian</h3>
+                            <p>On <strong>March 23, 2002</strong> due to its separation from the mother school, San Bartolome High School had its first Valedictorian and Salutatorian during the 5th Commencement Exercises. </p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-badge">2002</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-content tlbg p-1">
+                            <h3 class="timeline-title">The first principal</h3>
+                            <p>After the school's independence, <em>Novaliches - San Bartolome Annex</em> finally became <strong>San Bartolome High School</strong>. <strong>Dr. Proceso T. Lera</strong> was also the first principal of San Bartolome High School.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-badge">2001</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-content tlbg tic-6">
+                            <h3 class="timeline-title">Sixth Head teacher-in-charge</h3>
+                            <p><strong>Dr. Proceso T. Lera</strong> assumed his position as the newly appointed Head Teacher In-charge and the first male administrator of the school.</p>
+                            <p>His determined and relentless effort in pursuing the independence of the school paved the way for its autonomy on March 6, 2002, which was approved by Secretary Raul Roco.</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-badge">1997</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-content tlbg tic-5">
+                            <h3 class="timeline-title">Fifth Head Teacher</h3>
+                            <p><strong>Mrs. Flordeliza Malabanan</strong>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-badge">1994</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-content tlbg tic-4">
+                            <h3 class="timeline-title">Fourth Head Teacher</h3>
+                            <p><strong>Dr. Josephina Pamplina</strong>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-badge">1994</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-content tlbg tic-3">
+                            <h3 class="timeline-title">Third Head teacher-in-charge</h3>
+                            <p><strong>Dr. Elsa T. Batalla</strong>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-badge">1993</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-content tlbg tic-2">
+                            <h3 class="timeline-title">Second Head Teacher</h3>
+                            <p><strong>Mrs. Naomi F. Moncada</strong> followed Mrs. Rosario from being a head teacher.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-badge">1992</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-content tlbg tic-1">
+                            <h3 class="timeline-title">First Head teacher-in-charge</h3>
+                            <p><strong>Mrs. Rosario E. Estrada</strong> became the first Head Teacher in-charge.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-badge">1992</div>
+                    <div class="timeline-panel">
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Establishment</h3>
+                            <p>San Bartolome High School was established in 1992 as an annex of Novaliches High School, it had its initial offering of first year and second year level housed in 18 classrooms at the old Cariño Building located at its old site near Quezon City Polytechnic.</p>
+                        </div>
+                        <div class="timeline-image"><img src="{{ app.assets.get('/photos/sbhs-old.jpg') }}" alt="" class="tfw">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

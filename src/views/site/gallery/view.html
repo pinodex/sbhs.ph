@@ -1,0 +1,42 @@
+{% extends '@site/_layouts/default.html' %}
+
+{% set gallerySlug = app.helper.makeSlug(gallery.name) %}
+
+{% block content %}
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="window clean">
+                <h2 class="title">{{ page_title }}</h2>
+            </div>
+            <div class="post-cards">
+                {% if photos is empty %}
+                    This gallery is empty.
+                {% endif %}
+                <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1 gallery-photos">
+                    {% for photo in photos %}
+                        <li>
+                            <a class="post" href="{{ path('site.gallery.view.photo', {id: gallery.id, slug: gallerySlug, photoId: photo.id}) }}" data-image="{{ app.upload.get(photo.file) }}" data-equalizer-watch>
+                                <div class="image" style="background-image: url({{ photo.thumb ? app.upload.get(photo.thumb) : app.upload.get(photo.file) }});"></div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="fb-comments" data-href="{{ app.request.uri }}" data-width="100%"></div>
+        </div>
+    </div>
+    <div class="photo-lightbox">
+        <div class="close">
+            <i class="fi-x"></i>
+        </div>
+        <div class="photo-container">
+            <div class="photo">
+                <img alt="" />
+            </div>
+        </div>
+    </div>
+{% endblock %}

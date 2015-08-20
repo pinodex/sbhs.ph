@@ -1,0 +1,40 @@
+{% extends '@dashboard/_layouts/default.html' %}
+
+{% form_theme gallery_form '@dashboard/_layouts/form.html' %}
+
+{% block content %}
+    <div class="row page-header">
+        <div class="medium-8 columns title">
+            <h1><i class="fi-photo"></i> {{ page_title }}</h1>
+        </div>
+        <div class="medium-4 columns actions">
+            <a href="#" class="button tiny radius" data-submit-form="#createGallery"><i class="fi-save"></i> Save</a>
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-12 columns alert-box-container">
+                    {% if messageFlash %}
+                        {% for message in messageFlash %}
+                            {% set message = message|split('::') %}
+                            {% if message|length > 1 %}
+                                <div class="alert-box radius {{ message[0] }}">{{ message[1] }}</div>
+                            {% else %}
+                                <div class="alert-box radius secondary">{{ message[0] }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-4 columns">
+                    <form action="{{ app.request.pathinfo }}" method="post" id="createGallery">
+                        {{ form_widget(gallery_form) }}
+                        <button type="submit" class="button tiny"><i class="fi-save"></i> Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

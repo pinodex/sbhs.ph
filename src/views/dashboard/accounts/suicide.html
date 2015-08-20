@@ -1,0 +1,45 @@
+{% extends '@dashboard/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row page-header">
+        <div class="medium-12 columns title">
+            <h1><i class="fi-torsos"></i> {{ page_title }}</h1>
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-12 columns alert-box-container">
+                    {% if messageFlash %}
+                        {% for message in messageFlash %}
+                            {% set message = message|split('::') %}
+                            {% if message|length > 1 %}
+                                <div class="alert-box radius {{ message[0] }}">{{ message[1] }}</div>
+                            {% else %}
+                                <div class="alert-box radius secondary">{{ message[0] }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-4 large-offset-4">
+                    <div class="window">
+                        <h2 class="title">Suicide?</h2>
+                        <div class="content">
+                            <h4>Delete your own account?</h4>
+                            <p style="font-size: 13px;">Deleting your own account will automatically log you out. You won't be able to log back again unless someone created a new account for you.</p>
+                            <p style="font-size: 13px; margin-bottom: 0;">Your posts, photos, banners, events (if any) will be kept.</p>
+                        </div>
+                        <div class="footer">
+                            <form action="{{ app.request.pathinfo }}" method="post">
+                                <button class="button tiny alert radius"><i class="fi fi-trash"></i> Yes, please.</button>
+                                <a href="{{ path('dashboard.accounts.edit', {id: account.id}) }}" class="button tiny radius">Cancel</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

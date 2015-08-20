@@ -1,0 +1,44 @@
+{% extends '@dashboard/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row page-header">
+        <div class="medium-12 columns title">
+            <h1><i class="fi-page-multiple"></i> {{ page_title }}</h1>
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-12 columns alert-box-container">
+                    {% if messageFlash %}
+                        {% for message in messageFlash %}
+                            {% set message = message|split('::') %}
+                            {% if message|length > 1 %}
+                                <div class="alert-box radius {{ message[0] }}">{{ message[1] }}</div>
+                            {% else %}
+                                <div class="alert-box radius secondary">{{ message[0] }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-4 large-offset-4">
+                    <div class="window">
+                        <h2 class="title">Delete Post</h2>
+                        <div class="content">
+                            <p>Are you sure you want to delete this post?</p>
+                            <p style="margin-bottom: 0;"><strong>&ldquo;{{ post.title }}&rdquo;</strong></p>
+                        </div>
+                        <div class="footer">
+                            <form action="{{ app.request.pathinfo }}" method="post">
+                                <button class="button tiny alert radius"><i class="fi fi-trash"></i> Delete</button>
+                                <a href="{{ path('dashboard.posts.edit', {id: post.id}) }}" class="button tiny radius">Cancel</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

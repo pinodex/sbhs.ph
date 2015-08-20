@@ -1,0 +1,119 @@
+{% set currentAccount = app.accounts.getCurrentAccount() %}
+{% set messageFlash = app.flashbag.get('message') %}
+<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="utf-8" />
+    
+    <!--    
+    
+    ╭──────────────────────────────────────────╮
+    │ ≡ Front-end & Back-end                   │
+    ╞══════════════════════════════════════════╡
+    │ RAPHAEL MARCO                            │
+    ├──────────┬───────────────────────────────┤
+    │ Email    │ pinodex@outlook.ph            │
+    ├──────────┼───────────────────────────────┤
+    │ Twitter  │ @pinodexxd                    │
+    ├──────────┼───────────────────────────────┤
+    │ Location │ Manila, PH                    │
+    ╰──────────┴───────────────────────────────╯
+    
+    -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% for css in app.assets.getDashboardCss() %}
+        <link rel="stylesheet" type="text/css" href="{{ css }}" />
+    {% endfor %}
+    <title>{{ page_title }} | Dashboard - San Bartolome High School</title>
+    <script>
+        var urls = {
+            postUpload: '{{ path("dashboard.posts.upload") }}',
+            galleryUpload: '{{ path("dashboard.gallery.upload") }}'
+        }
+    </script>
+</head>
+<body>
+    <div class="fixed">
+        <nav class="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="#">San Bartolome High School</a></h1>
+                </li>
+                <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+            </ul>
+
+            <section class="top-bar-section">
+                <ul class="left">
+                    <li>
+                        <a href="#"><i class="fi-plus"></i> New Post</a>
+                    </li>
+                    <li class="hidden-with-side-bar">
+                        <a href="#"><i class="fi-home"></i> Home</a>
+                    </li>
+                </ul>
+
+                <ul class="right">
+                    <li class="has-dropdown">
+                        <a href="#"><span class="gray">Logged in as</span> {{ currentAccount.name }}</a>
+                        <ul class="dropdown">
+                            <li><a href="{{ path('dashboard.settings') }}">Account Settings</a></li>
+                            <li><a href="#" data-logout-href="{{ path('dashboard.auth.logout', {token: csrf_token('logout')}) }}">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+    </div>
+    <nav class="side-bar">
+        <ul>
+            <li{{ (app.request.get('_route') starts with 'dashboard.index') ? ' class="active"' }}>
+                <a href="{{ path('dashboard.index') }}">
+                    <span class="icon"><i class="fi-home"></i></span> Home
+                </a>
+            </li>
+            <li{{ (app.request.get('_route') starts with 'dashboard.posts') ? ' class="active"' }}>
+                <a href="{{ path('dashboard.posts') }}">
+                    <span class="icon"><i class="fi-page-multiple"></i></span> Posts
+                </a>
+            </li>
+            <li{{ (app.request.get('_route') starts with 'dashboard.announcements') ? ' class="active"' }}>
+                <a href="{{ path('dashboard.announcements') }}">
+                    <span class="icon"><i class="fi-megaphone"></i></span> Announcements
+                </a>
+            </li>
+            <li{{ (app.request.get('_route') starts with 'dashboard.gallery') ? ' class="active"' }}>
+                <a href="{{ path('dashboard.gallery') }}">
+                    <span class="icon"><i class="fi-photo"></i></span> Gallery
+                </a>
+            </li>
+            <li{{ (app.request.get('_route') starts with 'dashboard.banners') ? ' class="active"' }}>
+                <a href="{{ path('dashboard.banners') }}">
+                    <span class="icon"><i class="fi-tablet-landscape"></i></span> Banners
+                </a>
+            </li>
+            <li{{ (app.request.get('_route') starts with 'dashboard.events') ? ' class="active"' }}>
+                <a href="{{ path('dashboard.events') }}">
+                    <span class="icon"><i class="fi-calendar"></i></span> Events
+                </a>
+            </li>
+            <li{{ (app.request.get('_route') starts with 'dashboard.accounts') ? ' class="active"' }}>
+                <a href="{{ path('dashboard.accounts') }}">
+                    <span class="icon"><i class="fi-torsos"></i></span> Accounts
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="main-container">
+        <div class="row">
+            <div class="large-12 columns">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    <div class="loading-overlay"></div>
+    {% for js in app.assets.getDashboardJs() %}
+        <script src="{{ js }}"></script>
+    {% endfor %}
+</body>
+</html>

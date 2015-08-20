@@ -1,0 +1,58 @@
+{% extends '@site/_layouts/default.html' %}
+
+{% set noSidebar = true %}
+
+{% block content %}
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="window clean">
+                <h2 class="title">Event Calendar</h2>
+            </div>
+            <div class="event-calendar">
+                Loading calendar&hellip;
+                <script type="text/template" id="event-calendar-template">
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <div class="clndr-controls">
+                                <div class="clndr-previous-button">&lt;</div>
+                                <div class="clndr-next-button">&gt;</div>
+                                <div class="current-month"><%= month %> <%= year %></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-8 columns no-right-padding">
+                            <div class="clndr-grid">
+                                <div class="days-of-the-week clearfix">
+                                    <% _.each(daysOfTheWeek, function(day) { %>
+                                        <div class="header-day"><%= day %></div>
+                                    <% }); %>
+                                </div>
+                                <div class="days">
+                                    <% _.each(days, function(day) { %>
+                                        <div class="<%= day.classes %>" id="<%= day.id %>"><span class="day-number"><%= day.day %></span></div>
+                                    <% }); %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="large-4 columns no-left-padding">
+                            <div class="event-listing">
+                                <div class="event-listing-title">EVENTS THIS MONTH</div>
+                                <% _.each(eventsThisMonth, function(event) { %>
+                                    <div class="event-item">
+                                        <div class="event-item-name"><%= event.title %></div>
+                                        <div class="event-item-datetime"><%= event.hrf %></div>
+                                        <div class="event-item-description"><%= event.description %></div>
+                                    </div>
+                                <% }); %>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+                <script>
+                    var eventsList = {{ events|json_encode|raw }};
+                </script>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,783 @@
+{% extends '@site/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="window clean">
+                <h2 class="title">Stats</h2>
+            </div>
+            <ul class="tabs stats" data-tab>
+                <li class="tab-title active"><a href="#p1">Student Ratio Graph</a></li>
+                <li class="tab-title"><a href="#p2">Student Data</a></li>
+                <li class="tab-title"><a href="#p3">Enrollment Rate</a></li>
+                <li class="tab-title"><a href="#p4">Drop-out Rate</a></li>
+            </ul>
+            <div class="tabs-content">
+                <div class="content active" id="p1">
+                    <table class="full stats">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="2">First Year</th>
+                                <th colspan="2">Second Year</th>
+                                <th colspan="2">Third Year</th>
+                                <th colspan="2">Fourth Year</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2009-2010</td>
+                                <td>812</td>
+                                <td>865</td>
+                                <td>711</td>
+                                <td>808</td>
+                                <td>596</td>
+                                <td>715</td>
+                                <td>556</td>
+                                <td>695</td>
+                            </tr>
+                            <tr>
+                                <td>2010-2011</td>
+                                <td>1034</td>
+                                <td>946</td>
+                                <td>870</td>
+                                <td>883</td>
+                                <td>686</td>
+                                <td>782</td>
+                                <td>611</td>
+                                <td>699</td>
+                            </tr>
+                            <tr>
+                                <td>2011-2012</td>
+                                <td>885</td>
+                                <td>900</td>
+                                <td>734</td>
+                                <td>854</td>
+                                <td>680</td>
+                                <td>804</td>
+                                <td>634</td>
+                                <td>718</td>
+                            </tr>
+                            <tr>
+                                <td>2012-2013</td>
+                                <td>915</td>
+                                <td>911</td>
+                                <td>865</td>
+                                <td>900</td>
+                                <td>735</td>
+                                <td>878</td>
+                                <td>681</td>
+                                <td>793</td>
+                            </tr>
+                            <tr>
+                                <td>2013-2014</td>
+                                <td>1179</td>
+                                <td>1010</td>
+                                <td>992</td>
+                                <td>983</td>
+                                <td>939</td>
+                                <td>930</td>
+                                <td>730</td>
+                                <td>863</td>
+                            </tr>
+                            <tr>
+                                <td>2014-2015</td>
+                                <td>1014</td>
+                                <td>1008</td>
+                                <td>1016</td>
+                                <td>985</td>
+                                <td>850</td>
+                                <td>894</td>
+                                <td>831</td>
+                                <td>863</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <img src="{{ app.assets.get('/img/srg.jpg') }}" alt="" />
+                </div>
+                <div class="content" id="p2">
+                    <h3>2013-2014</h3>
+                    <table class="full stats">
+                        <thead>
+                            <tr>
+                                <th>Particulars</th>
+                                <th colspan="2">Year 1</th>
+                                <th colspan="2">Year 2</th>
+                                <th colspan="2">Year 3</th>
+                                <th colspan="2">Year 4</th>
+                                <th colspan="2">Total</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Enrollment</td>
+                                <td>1179</td>
+                                <td>1010</td>
+                                <td>992</td>
+                                <td>983</td>
+                                <td>939</td>
+                                <td>930</td>
+                                <td>730</td>
+                                <td>663</td>
+                                <td>3840</td>
+                                <td>3586</td>
+                            </tr>
+                            <tr>
+                                <td>Graduates</td>
+                                <td>808</td>
+                                <td>917</td>
+                                <td>769</td>
+                                <td>878</td>
+                                <td>736</td>
+                                <td>813</td>
+                                <td>699</td>
+                                <td>832</td>
+                                <td>3012</td>
+                                <td>3440</td>
+                            </tr>
+                            <tr>
+                                <td>Dropouts</td>
+                                <td>0</td>
+                                <td>4</td>
+                                <td>70</td>
+                                <td>41</td>
+                                <td>0</td>
+                                <td>39</td>
+                                <td>9</td>
+                                <td>11</td>
+                                <td>79</td>
+                                <td>95</td>
+                            </tr>
+                            <tr>
+                                <td>Transferees in</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>23</td>
+                                <td>24</td>
+                                <td>9</td>
+                                <td>20</td>
+                                <td>11</td>
+                                <td>13</td>
+                                <td>47</td>
+                                <td>59</td>
+                            </tr>
+                            <tr>
+                                <td>Transferees out</td>
+                                <td>14</td>
+                                <td>6</td>
+                                <td>4</td>
+                                <td>6</td>
+                                <td>3</td>
+                                <td>6</td>
+                                <td>4</td>
+                                <td>8</td>
+                                <td>25</td>
+                                <td>26</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3 style="margin-top: 20px;">2012-2013</h3>
+                    <table class="full stats">
+                        <thead>
+                            <tr>
+                                <th>Particulars</th>
+                                <th colspan="2">Year 1</th>
+                                <th colspan="2">Year 2</th>
+                                <th colspan="2">Year 3</th>
+                                <th colspan="2">Year 4</th>
+                                <th colspan="2">Total</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Enrollment</td>
+                                <td>1026</td>
+                                <td>950</td>
+                                <td>966</td>
+                                <td>959</td>
+                                <td>796</td>
+                                <td>873</td>
+                                <td>707</td>
+                                <td>833</td>
+                                <td>3495</td>
+                                <td>3615</td>
+                            </tr>
+                            <tr>
+                                <td>Graduates</td>
+                                <td>843</td>
+                                <td>895</td>
+                                <td>795</td>
+                                <td>865</td>
+                                <td>692</td>
+                                <td>849</td>
+                                <td>677</td>
+                                <td>786</td>
+                                <td>3007</td>
+                                <td>3395</td>
+                            </tr>
+                            <tr>
+                                <td>Dropouts</td>
+                                <td>104</td>
+                                <td>32</td>
+                                <td>80</td>
+                                <td>51</td>
+                                <td>37</td>
+                                <td>21</td>
+                                <td>21</td>
+                                <td>25</td>
+                                <td>242</td>
+                                <td>129</td>
+                            </tr>
+                            <tr>
+                                <td>Transferees in</td>
+                                <td>6</td>
+                                <td>14</td>
+                                <td>20</td>
+                                <td>36</td>
+                                <td>6</td>
+                                <td>29</td>
+                                <td>5</td>
+                                <td>4</td>
+                                <td>37</td>
+                                <td>83</td>
+                            </tr>
+                            <tr>
+                                <td>Transferees out</td>
+                                <td>14</td>
+                                <td>21</td>
+                                <td>41</td>
+                                <td>44</td>
+                                <td>30</td>
+                                <td>3</td>
+                                <td>10</td>
+                                <td>19</td>
+                                <td>95</td>
+                                <td>87</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3 style="margin-top: 20px;">2011-2012</h3>
+                    <table class="full stats">
+                        <thead>
+                            <tr>
+                                <th>Particulars</th>
+                                <th colspan="2">Year 1</th>
+                                <th colspan="2">Year 2</th>
+                                <th colspan="2">Year 3</th>
+                                <th colspan="2">Year 4</th>
+                                <th colspan="2">Total</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Enrollment</td>
+                                <td>885</td>
+                                <td>900</td>
+                                <td>734</td>
+                                <td>854</td>
+                                <td>680</td>
+                                <td>804</td>
+                                <td>634</td>
+                                <td>718</td>
+                                <td>2933</td>
+                                <td>3276</td>
+                            </tr>
+                            <tr>
+                                <td>Graduates</td>
+                                <td>832</td>
+                                <td>887</td>
+                                <td>677</td>
+                                <td>830</td>
+                                <td>661</td>
+                                <td>797</td>
+                                <td>627</td>
+                                <td>717</td>
+                                <td>2797</td>
+                                <td>3231</td>
+                            </tr>
+                            <tr>
+                                <td>Dropouts</td>
+                                <td>173</td>
+                                <td>56</td>
+                                <td>99</td>
+                                <td>70</td>
+                                <td>58</td>
+                                <td>40</td>
+                                <td>28</td>
+                                <td>29</td>
+                                <td>358</td>
+                                <td>195</td>
+                            </tr>
+                            <tr>
+                                <td>Transferees in</td>
+                                <td>0</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>Transferees out</td>
+                                <td>35</td>
+                                <td>19</td>
+                                <td>27</td>
+                                <td>7</td>
+                                <td>0</td>
+                                <td>9</td>
+                                <td>4</td>
+                                <td>7</td>
+                                <td>66</td>
+                                <td>42</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3 style="margin-top: 20px;">2010-2011</h3>
+                    <table class="full stats">
+                        <thead>
+                            <tr>
+                                <th>Particulars</th>
+                                <th colspan="2">Year 1</th>
+                                <th colspan="2">Year 2</th>
+                                <th colspan="2">Year 3</th>
+                                <th colspan="2">Year 4</th>
+                                <th colspan="2">Total</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Enrollment</td>
+                                <td>1034</td>
+                                <td>946</td>
+                                <td>870</td>
+                                <td>883</td>
+                                <td>686</td>
+                                <td>782</td>
+                                <td>611</td>
+                                <td>699</td>
+                                <td>3201</td>
+                                <td>3310</td>
+                            </tr>
+                            <tr>
+                                <td>Graduates</td>
+                                <td>701</td>
+                                <td>868</td>
+                                <td>632</td>
+                                <td>786</td>
+                                <td>618</td>
+                                <td>720</td>
+                                <td>560</td>
+                                <td>680</td>
+                                <td>2511</td>
+                                <td>3054</td>
+                            </tr>
+                            <tr>
+                                <td>Dropouts</td>
+                                <td>117</td>
+                                <td>36</td>
+                                <td>120</td>
+                                <td>55</td>
+                                <td>55</td>
+                                <td>54</td>
+                                <td>47</td>
+                                <td>17</td>
+                                <td>339</td>
+                                <td>162</td>
+                            </tr>
+                            <tr>
+                                <td>Transferees in</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>4</td>
+                                <td>1</td>
+                                <td>12</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>Transferees out</td>
+                                <td>39</td>
+                                <td>7</td>
+                                <td>13</td>
+                                <td>8</td>
+                                <td>5</td>
+                                <td>5</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>58</td>
+                                <td>20</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3 style="margin-top: 20px;">2009-2010</h3>
+                    <table class="full stats">
+                        <thead>
+                            <tr>
+                                <th>Particulars</th>
+                                <th colspan="2">Year 1</th>
+                                <th colspan="2">Year 2</th>
+                                <th colspan="2">Year 3</th>
+                                <th colspan="2">Year 4</th>
+                                <th colspan="2">Total</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Enrollment</td>
+                                <td>812</td>
+                                <td>865</td>
+                                <td>711</td>
+                                <td>808</td>
+                                <td>596</td>
+                                <td>715</td>
+                                <td>556</td>
+                                <td>695</td>
+                                <td>2675</td>
+                                <td>3083</td>
+                            </tr>
+                            <tr>
+                                <td>Graduates</td>
+                                <td>716</td>
+                                <td>884</td>
+                                <td>588</td>
+                                <td>751</td>
+                                <td>556</td>
+                                <td>696</td>
+                                <td>533</td>
+                                <td>687</td>
+                                <td>2293</td>
+                                <td>2978</td>
+                            </tr>
+                            <tr>
+                                <td>Dropouts</td>
+                                <td>156</td>
+                                <td>62</td>
+                                <td>166</td>
+                                <td>64</td>
+                                <td>72</td>
+                                <td>62</td>
+                                <td>48</td>
+                                <td>37</td>
+                                <td>442</td>
+                                <td>225</td>
+                            </tr>
+                            <tr>
+                                <td>Transferees in</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>5</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>Transferees out</td>
+                                <td>11</td>
+                                <td>9</td>
+                                <td>16</td>
+                                <td>11</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>6</td>
+                                <td>3</td>
+                                <td>42</td>
+                                <td>33</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="content active" id="p3">
+                    <table class="full stats">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="2">First Year</th>
+                                <th colspan="2">Second Year</th>
+                                <th colspan="2">Third Year</th>
+                                <th colspan="2">Fourth Year</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th>School Year</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2009-2010</td>
+                                <td>812</td>
+                                <td>865</td>
+                                <td>711</td>
+                                <td>808</td>
+                                <td>596</td>
+                                <td>715</td>
+                                <td>556</td>
+                                <td>695</td>
+                                <td>6414</td>
+                            </tr>
+                            <tr>
+                                <td>2010-2011</td>
+                                <td>1034</td>
+                                <td>946</td>
+                                <td>870</td>
+                                <td>883</td>
+                                <td>686</td>
+                                <td>782</td>
+                                <td>611</td>
+                                <td>699</td>
+                                <td>6611</td>
+                            </tr>
+                            <tr>
+                                <td>2011-2012</td>
+                                <td>885</td>
+                                <td>990</td>
+                                <td>734</td>
+                                <td>854</td>
+                                <td>680</td>
+                                <td>804</td>
+                                <td>634</td>
+                                <td>718</td>
+                                <td>6209</td>
+                            </tr>
+                            <tr>
+                                <td>2012-2013</td>
+                                <td>915</td>
+                                <td>911</td>
+                                <td>865</td>
+                                <td>900</td>
+                                <td>735</td>
+                                <td>878</td>
+                                <td>681</td>
+                                <td>793</td>
+                                <td>6678</td>
+                            </tr>
+                            <tr>
+                                <td>2013-2014</td>
+                                <td>1179</td>
+                                <td>1010</td>
+                                <td>992</td>
+                                <td>983</td>
+                                <td>939</td>
+                                <td>930</td>
+                                <td>730</td>
+                                <td>863</td>
+                                <td>7626</td>
+                            </tr>
+                            <tr>
+                                <td>2014-2015</td>
+                                <td>1014</td>
+                                <td>1008</td>
+                                <td>1016</td>
+                                <td>985</td>
+                                <td>850</td>
+                                <td>894</td>
+                                <td>831</td>
+                                <td>863</td>
+                                <td>7461</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="content active" id="p4">
+                    <table class="full stats">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="2">Year 1</th>
+                                <th colspan="2">Year 2</th>
+                                <th colspan="2">Year 3</th>
+                                <th colspan="2">Year 4</th>
+                                <th>Total
+                                    <br>Drop-outs</th>
+                                <th>Total
+                                    <br>Enrollment</th>
+                                <th>Rate</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2013-2014</td>
+                                <td>0</td>
+                                <td>4</td>
+                                <td>70</td>
+                                <td>41</td>
+                                <td>0</td>
+                                <td>39</td>
+                                <td>9</td>
+                                <td>11</td>
+                                <td>174</td>
+                                <td>7628</td>
+                                <td>2.28%</td>
+                            </tr>
+                            <tr>
+                                <td>2012-2013</td>
+                                <td>104</td>
+                                <td>32</td>
+                                <td>80</td>
+                                <td>51</td>
+                                <td>37</td>
+                                <td>21</td>
+                                <td>21</td>
+                                <td>25</td>
+                                <td>371</td>
+                                <td>7070</td>
+                                <td>5.25%</td>
+                            </tr>
+                            <tr>
+                                <td>2011-2012</td>
+                                <td>173</td>
+                                <td>56</td>
+                                <td>99</td>
+                                <td>70</td>
+                                <td>58</td>
+                                <td>40</td>
+                                <td>28</td>
+                                <td>29</td>
+                                <td>553</td>
+                                <td>6209</td>
+                                <td>8.91%</td>
+                            </tr>
+                            <tr>
+                                <td>2010-2011</td>
+                                <td>117</td>
+                                <td>36</td>
+                                <td>120</td>
+                                <td>55</td>
+                                <td>55</td>
+                                <td>54</td>
+                                <td>47</td>
+                                <td>17</td>
+                                <td>501</td>
+                                <td>6511</td>
+                                <td>7.69%</td>
+                            </tr>
+                            <tr>
+                                <td>2009-2010</td>
+                                <td>156</td>
+                                <td>62</td>
+                                <td>166</td>
+                                <td>64</td>
+                                <td>72</td>
+                                <td>62</td>
+                                <td>48</td>
+                                <td>37</td>
+                                <td>667</td>
+                                <td>6505</td>
+                                <td>10.25%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

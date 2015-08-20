@@ -1,0 +1,26 @@
+{% extends '@site/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="window clean">
+                <h2 class="title">Authors</h2>
+            </div>
+            <div class="authors post-cards">
+                <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1" data-equalizer>
+                    {% for author in authors %}
+                        <li>
+                            <div class="post" data-equalizer-watch>
+                                <div class="image" style="background-image: url(//www.gravatar.com/avatar/{{ app.helper.md5(author.email) }}?s=250&amp;d=mm);"></div>
+                                <div class="content">
+                                    <h2><a href="{{ path('site.about.authors.view', {id: author.id, slug: app.helper.makeSlug(author.name)}) }}">{{ author.name }}</a></h2>
+                                    <div class="description">{{ author.about }}</div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

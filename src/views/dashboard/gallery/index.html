@@ -1,0 +1,52 @@
+{% extends '@dashboard/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row page-header">
+        <div class="medium-8 columns title">
+            <h1><i class="fi-photo"></i> Gallery</h1>
+        </div>
+        <div class="medium-4 columns actions">
+            <a href="{{ path('dashboard.gallery.create') }}" class="button tiny radius"><i class="fi-plus"></i> Create Gallery</a>
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-12 columns alert-box-container">
+                    {% if messageFlash %}
+                        {% for message in messageFlash %}
+                            {% set message = message|split('::') %}
+                            {% if message|length > 1 %}
+                                <div class="alert-box radius {{ message[0] }}">{{ message[1] }}</div>
+                            {% else %}
+                                <div class="alert-box radius secondary">{{ message[0] }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="post-cards">
+                <ul class="large-block-grid-4 medium-block-grid-2 small-block-grid-1" data-equalizer>
+                    {% for gallery in galleries %}
+                        <li>
+                            <div class="post" data-equalizer-watch>
+                                {% set firstPhoto = app.photos.getFirstByGallery(gallery.id) %}
+                                {% if firstPhoto %}
+                                    <div class="image" style="background-image: url({{ app.upload.get(firstPhoto.file) }});"></div>
+                                {% else %}
+                                    <div class="image"></div>
+                                {% endif %}
+                                <div class="content">
+                                    <h2><a href="{{ path('dashboard.gallery.view', {id: gallery.id}) }}">{{ gallery.name }}</a></h2>
+                                    <div class="description">
+                                        {{ gallery.description }}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

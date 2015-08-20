@@ -1,0 +1,55 @@
+{% extends '@dashboard/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row page-header">
+        <div class="medium-8 columns title">
+            <h1><i class="fi-megaphone"></i> Announcements</h1>
+        </div>
+        <div class="medium-4 columns actions">
+            <a href="{{ path('dashboard.announcements.create') }}" class="button tiny radius"><i class="fi-plus"></i> Create Announcement</a>
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-12 columns alert-box-container">
+                    {% if messageFlash %}
+                        {% for message in messageFlash %}
+                            {% set message = message|split('::') %}
+                            {% if message|length > 1 %}
+                                <div class="alert-box radius {{ message[0] }}">{{ message[1] }}</div>
+                            {% else %}
+                                <div class="alert-box radius secondary">{{ message[0] }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <table style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Content</th>
+                                <th>Created</th>
+                                <th>Author</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for announcement in announcements %}
+                                {% set author = app.accounts.getAccount(announcement.author) %}
+                                <tr>
+                                    <td>{{ announcement.content }}</td>
+                                    <td>{{ announcement.created|date('M d, Y - h:i a') }}</td>
+                                    <td>{{ author ? author.name : '[deleted]' }}</td>
+                                    <td><a href="{{ path('dashboard.announcements.edit', {id: announcement.id}) }}">Edit</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

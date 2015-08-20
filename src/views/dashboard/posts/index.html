@@ -1,0 +1,56 @@
+{% extends '@dashboard/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row page-header">
+        <div class="medium-8 columns title">
+            <h1><i class="fi-page-multiple"></i> Posts</h1>
+        </div>
+        <div class="medium-4 columns actions">
+            <a href="{{ path('dashboard.posts.write') }}" class="button tiny radius"><i class="fi-plus"></i> Create Post</a>
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-12 columns alert-box-container">
+                    {% if messageFlash %}
+                        {% for message in messageFlash %}
+                            {% set message = message|split('::') %}
+                            {% if message|length > 1 %}
+                                <div class="alert-box radius {{ message[0] }}">{{ message[1] }}</div>
+                            {% else %}
+                                <div class="alert-box radius secondary">{{ message[0] }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="post-list">
+                {% for post in posts %}
+                    <div class="post">
+                        <h2><a href="{{ path('dashboard.posts.edit', {id: post.id}) }}">{{ post.title }}</a></h2>
+                        <p class="meta">
+                            {% set author = app.accounts.getAccount(post.author) %}
+                            {% if author %}
+                                By {{ author.name }}.
+                            {% endif %}
+
+                            {% if post.published %}
+                                Published on {{ post.published|date('M d, h:i a') }}. 
+                            {% else %}
+                                Draft saved on {{ post.saved|date('M d, h:i a') }}. 
+                            {% endif %}
+
+                            {% if post.last_edited %}
+                                Last edited on {{ post.last_edited|date('M d, h:i a') }}
+                            {% endif %}
+                        </p>
+                        <div class="description">
+                            {{ post.description ?: app.posts.truncateText(post.content) }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

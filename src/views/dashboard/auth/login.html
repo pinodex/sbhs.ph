@@ -1,0 +1,28 @@
+{% extends '@dashboard/_layouts/auth.html' %}
+
+{% set messageFlash = app.flashbag.get('message') %}
+{% set next = app.request.query.get('next') %}
+
+{% block content %}
+    <div class="row">
+        <div class="large-4 large-offset-4">
+            <div class="login-box-container">
+                <h1>Login to your account</h1>
+                <form action="{{ next ? path('dashboard.auth.login', { next: next }) : path('dashboard.auth.login') }}" method="post">
+                    {% if messageFlash %}
+                        {% for message in messageFlash %}
+                            {% set message = message|split('::') %}
+                            {% if message|length > 1 %}
+                                <div class="alert-box radius {{ message[0] }}">{{ message[1] }}</div>
+                            {% else %}
+                                <div class="alert-box radius secondary">{{ message[0] }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {{ form_widget(login_form) }}
+                    <button class="button expand small">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

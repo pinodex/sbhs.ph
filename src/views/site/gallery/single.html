@@ -1,0 +1,24 @@
+{% extends '@site/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="window clean">
+                <h2 class="title">{{ page_title }}</h2>
+            </div>
+            <div class="post-cards">
+                <img src="{{ app.upload.get(photo.file) }}" alt="Image - {{ page_title }}" />
+            </div>
+        </div>
+    </div>
+    <div class="photo-lightbox">
+        <div class="close">
+            <i class="fi-x"></i>
+        </div>
+        <div class="photo-container">
+            <div class="photo">
+                <img alt="" />
+            </div>
+        </div>
+    </div>
+{% endblock %}

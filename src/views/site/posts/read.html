@@ -1,0 +1,30 @@
+{% extends '@site/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="post-header">
+                <h2>{{ post.title }}</h2>
+                <p>
+                    Posted on {{ post.published|date('M d, h:i a') }}
+
+                    {% if author %}
+                        by <a href="{{ path('site.about.authors.view', {id: author.id, slug: app.helper.makeSlug(author.name)}) }}">{{ author.name }}</a>
+                    {% endif %}
+
+                    {% if app.accounts.getCurrentAccount() %}
+                        <a href="{{ path('dashboard.posts.edit', {id: post.id}) }}">[edit post]</a>
+                    {% endif %}
+                </p>
+            </div>
+            <div class="post-content">
+                {{ post.content|raw }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="fb-comments" data-href="{{ app.request.uri }}" data-width="100%"></div>
+        </div>
+    </div>
+{% endblock %}

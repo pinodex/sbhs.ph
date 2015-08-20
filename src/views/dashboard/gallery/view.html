@@ -1,0 +1,73 @@
+{% extends '@dashboard/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row page-header">
+        <div class="medium-7 columns title">
+            <h1><i class="fi-photo"></i> {{ gallery.name }}</h1>
+        </div>
+        <div class="medium-5 columns actions">
+            <button class="button tiny radius" data-click-proxy=".gallery-manager .add"><i class="fi-upload"></i> Add Photos</button>
+            <a href="{{ path('dashboard.gallery.edit', {id: gallery.id}) }}" class="button tiny radius success"><i class="fi-page-edit"></i> Edit Gallery</a>
+            <a href="{{ path('dashboard.gallery.delete', {id: gallery.id}) }}" class="button tiny radius alert"><i class="fi-trash"></i> Delete Gallery</a>
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-12 columns alert-box-container">
+                    {% if messageFlash %}
+                        {% for message in messageFlash %}
+                            {% set message = message|split('::') %}
+                            {% if message|length > 1 %}
+                                <div class="alert-box radius {{ message[0] }}">{{ message[1] }}</div>
+                            {% else %}
+                                <div class="alert-box radius secondary">{{ message[0] }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="photo-cards gallery-manager">
+                <ul class="large-block-grid-4 medium-block-grid-2 small-block-grid-1">
+                    {% for photo in photos %}
+                        <li data-gallery="{{ gallery.id }}" data-delete-url="{{ path('dashboard.gallery.photo.delete', {galleryId: gallery.id, photoId: photo.id}) }}">
+                            <div class="photo uploaded">
+                                <div class="thumb" style="background-image: url({{ photo.thumb ? app.upload.get(photo.thumb) : app.upload.get(photo.file) }});"></div>
+                                <div class="actions">
+                                    <button class="button tiny alert radius delete"><i class="fi-trash"></i> Remove</button>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    <li class="selector">
+                        <div class="photo add">
+                            <div class="add-button">
+                                <i class="fi-plus"></i>
+                                <p>Add Photos</p>
+                            </div>
+                        </div>
+                    </li>
+                    <template id="photo-card">
+                        <li data-gallery="{{ gallery.id }}" data-delete-url="{{ path('dashboard.gallery.photo.delete', {galleryId: '-', photoId: '--'}) }}">
+                            <div class="photo queue">
+                                <div class="thumb"></div>
+                                <div class="progress-bar">
+                                    <div></div>
+                                </div>
+                                <div class="status">
+                                    <i class="success fi-check"></i>
+                                    <i class="error fi-x"></i>
+                                    <p class="success">Uploaded</p>
+                                    <p class="error">Error</p>
+                                </div>
+                                <div class="actions">
+                                    <button class="button tiny alert radius delete"><i class="fi-trash"></i> Remove</button>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

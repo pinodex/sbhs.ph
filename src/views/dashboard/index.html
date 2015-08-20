@@ -1,0 +1,96 @@
+{% extends '@dashboard/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row page-header">
+        <div class="large-12 columns title">
+            <h1>Overview</h1>
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-12 columns alert-box-container">
+                    {% if messageFlash %}
+                        {% for message in messageFlash %}
+                            {% set message = message|split('::') %}
+                            {% if message|length > 1 %}
+                                <div class="alert-box radius {{ message[0] }}">{{ message[1] }}</div>
+                            {% else %}
+                                <div class="alert-box radius secondary">{{ message[0] }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-8 columns">
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <div class="window no-padding">
+                                <h2 class="title">Latest Posts</h2>
+                                <div class="content">
+                                    <ul class="latest-list">
+                                        {% for post in app.posts.getPosts(5) %}
+                                        <li>
+                                            <a href="{{ path('site.posts.read', {id: post.id, slug: app.helper.makeSlug(post.title)}) }}">{{ post.title }}</a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <div class="window no-padding">
+                                <h2 class="title">Upcoming Events</h2>
+                                <div class="content">
+                                    <ul class="latest-list">
+                                        {% for event in app.events.getUpcomingEvents(5) %}
+                                        <li>
+                                            {{ event.title }} <span class="label radius right">{{ event.datetime|date('M d') }}</span>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="large-4 columns">
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <div class="window no-padding">
+                                <h2 class="title">Stats</h2>
+                                <div class="content">
+                                    <ul class="latest-list">
+                                        <li>
+                                            Published Posts
+                                            <span class="label radius right">{{ app.posts.getPublishedCount() }}</span>
+                                        </li>
+                                        <li>
+                                            Draft Posts
+                                            <span class="label radius right">{{ app.posts.getDraftCount() }}</span>
+                                        </li>
+                                        <li>
+                                            Gallery
+                                            <span class="label radius right">{{ app.gallery.getCount() }}</span>
+                                        </li>
+                                        <li>
+                                            Photos
+                                            <span class="label radius right">{{ app.photos.getCount() }}</span>
+                                        </li>
+                                        <li>
+                                            Events
+                                            <span class="label radius right">{{ app.events.getCount() }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

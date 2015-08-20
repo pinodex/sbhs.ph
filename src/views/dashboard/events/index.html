@@ -1,0 +1,56 @@
+{% extends '@dashboard/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row page-header">
+        <div class="medium-8 columns title">
+            <h1><i class="fi-calendar"></i> Events</h1>
+        </div>
+        <div class="medium-4 columns actions">
+            <a href="{{ path('dashboard.events.create') }}" class="button tiny radius"><i class="fi-plus"></i> Create Event</a>
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-12 columns alert-box-container">
+                    {% if messageFlash %}
+                        {% for message in messageFlash %}
+                            {% set message = message|split('::') %}
+                            {% if message|length > 1 %}
+                                <div class="alert-box radius {{ message[0] }}">{{ message[1] }}</div>
+                            {% else %}
+                                <div class="alert-box radius secondary">{{ message[0] }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="events">
+                <div class="row">
+                    {% for eventChunk in events %}
+                        <div class="large-4 medium-6 small-12 columns">
+                            {% for event in eventChunk %}
+                                <div class="row">
+                                    <div class="large-12 columns">
+                                        <div class="event{{ (date() > date(event.datetime)) ? ' passed' : '' }}">
+                                            <div class="date">
+                                                <span class="month">{{ event.datetime|date('M') }}</span>
+                                                <span class="day">{{ event.datetime|date('d') }}</span>
+                                                <span class="year">{{ event.datetime|date('Y') }}</span>
+                                            </div>
+                                            <h2 class="title">
+                                                <a href="{{ path('dashboard.events.edit', {id: event.id}) }}">{{ event.title }}</a>
+                                            </h2>
+                                            <p class="time">{{ event.datetime|date('h:i a') }}</p>
+                                            <div class="description">{{ event.description }}</div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

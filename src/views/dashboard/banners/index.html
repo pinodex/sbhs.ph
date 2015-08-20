@@ -1,0 +1,45 @@
+{% extends '@dashboard/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row page-header">
+        <div class="medium-8 columns title">
+            <h1><i class="fi-tablet-landscape"></i> Banners</h1>
+        </div>
+        <div class="medium-4 columns actions">
+            <a href="{{ path('dashboard.banners.create') }}" class="button tiny radius"><i class="fi-plus"></i> Create Banner</a>
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-12 columns alert-box-container">
+                    {% if messageFlash %}
+                        {% for message in messageFlash %}
+                            {% set message = message|split('::') %}
+                            {% if message|length > 1 %}
+                                <div class="alert-box radius {{ message[0] }}">{{ message[1] }}</div>
+                            {% else %}
+                                <div class="alert-box radius secondary">{{ message[0] }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="post-cards">
+                <ul class="large-block-grid-4 medium-block-grid-2 small-block-grid-1" data-equalizer>
+                    {% for banner in banners %}
+                        <li>
+                            <div class="post" data-equalizer-watch>
+                                <div class="image" style="background-image: url({{ app.upload.get(banner.image) }});"></div>
+                                <div class="content">
+                                    <h2><a href="{{ path('dashboard.banners.edit', {id: banner.id}) }}">{{ banner.title }}</a></h2>
+                                    <div class="description">{{ banner.description }}</div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends '@dashboard/_layouts/default.html' %}
+
+{% block content %}
+    <div class="row page-header">
+        <div class="medium-6 columns title">
+            <h1><i class="fi-plus"></i> {{ page_title }}</h1>
+        </div>
+        <div class="medium-6 columns actions">
+            {% if post is defined %}
+                <a class="button tiny radius alert" href="{{ path('dashboard.posts.delete', {id: post.id}) }}"><i class="fi-trash"></i> Delete Post</a>
+            {% endif %}
+            {% if post is not defined or not post.published %}
+                <button class="button tiny radius secondary" data-submit-form="#writePost" data-post-type="draft"><i class="fi-archive"></i> Save As Draft</button>
+            {% endif %}
+            <button class="button tiny radius" data-submit-form="#writePost" data-post-type="publish"><i class="fi-check"></i> Publish Post</button>
+        </div>
+    </div>
+    <div class="row page-content">
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-12 columns alert-box-container">
+                    {% if messageFlash %}
+                        {% for message in messageFlash %}
+                            {% set message = message|split('::') %}
+                            {% if message|length > 1 %}
+                                <div class="alert-box radius {{ message[0] }}">{{ message[1] }}</div>
+                            {% else %}
+                                <div class="alert-box radius secondary">{{ message[0] }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <form action="{{ app.request.pathinfo }}" method="post" class="write-post-form" id="writePost">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('dashboard.posts.write') }}" />
+                        <input type="hidden" name="post_type" value="draft" />
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <input type="text" name="title" value="{{ post.title|default('') }}" placeholder="Enter Post Title" autofocus="autofocus" required="required" class="input-lg" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <div id="editor">{{ post.content|default('')|raw }}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-6 columns">
+                                <textarea class="description" name="description" placeholder="Enter post description (optional)">{{ post.description|default('') }}</textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="large-12 columns">
+                    {% if post is defined %}
+                        <a class="button tiny radius alert" href="{{ path('dashboard.posts.delete', {id: post.id}) }}"><i class="fi-trash"></i> Delete Post</a>
+                    {% endif %}
+                    {% if post is not defined or not post.published %}
+                        <button class="button tiny radius secondary" data-submit-form="#writePost" data-post-type="draft"><i class="fi-archive"></i> Save As Draft</button>
+                    {% endif %}
+                    <button class="button tiny radius" data-submit-form="#writePost" data-post-type="publish"><i class="fi-check"></i> Publish Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
