@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <atom:link href="{{ url('site.rss') }}" rel="self" type="application/rss+xml" />
+
+        <title>San Bartolome High School</title>
+        <description>Feeds from the official website of San Bartolome High School</description>
+        <image>
+            <title>San Bartolome High School</title>
+            <link>{{ url('site.index') }}</link>
+            <url>{{ app.assets.get('/img/logo.png') }}</url>
+        </image>
+        <link>{{ url('site.index') }}</link>
+        <ttl>60</ttl>
+
+{% for post in posts %}
+        <item>
+            <guid>{{ url('site.posts.read', {id: post.id, slug: app.helper.makeSlug(post.title)}) }}</guid>
+            <title>{{ post.title }}</title>
+            <link>{{ url('site.posts.read', {id: post.id, slug: app.helper.makeSlug(post.title)}) }}</link>
+            <description>{{ post.description ?: app.posts.truncateText(post.content) }}</description>
+            <pubDate>{{ post.published|date('r') }}</pubDate>
+        </item>
+{% endfor %}
+{% for gallery in galleries %}
+{% set firstPhoto = app.photos.getFirstByGallery(gallery.id) %}
+        <item>
+            <guid>{{ url('site.gallery.view', {id: gallery.id, slug: app.helper.makeSlug(gallery.name)}) }}</guid>
+            <title>{{ gallery.name }}</title>
+            <link>{{ url('site.gallery.view', {id: gallery.id, slug: app.helper.makeSlug(gallery.name)}) }}</link>
+{% if gallery.description or firstPhoto %}
+            <description><![CDATA[{{ (firstPhoto ? '<img src="' ~ app.upload.get(firstPhoto.file) ~ '" /><br />' : '')|raw }}{{ gallery.description }}]]></description>
+{% endif %}
+            <pubDate>{{ gallery.created|date('r') }}</pubDate>
+        </item>
+{% endfor %}
+    </channel>
+</rss>

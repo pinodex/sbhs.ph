@@ -33,6 +33,7 @@
     {% for css in app.assets.getSiteCss() %}
         <link rel="stylesheet" type="text/css" href="{{ css }}" />
     {% endfor %}
+    <link type="application/rss+xml" rel="alternate" href="{{ url('site.rss') }}" />
     <title>{{ page_title }} | San Bartolome High School</title>
 </head>
 <body>

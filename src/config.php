@@ -48,7 +48,7 @@ $app['twig.options'] = array(
 /*
  * Profiler configuration
  */
-$app['profiler.enable'] = false;
+$app['profiler.enable'] = true;
 $app['profiler.cache_dir'] = ROOT . '/cache/profiler';
 $app['profiler.mount_prefix'] = '/_profiler';
 

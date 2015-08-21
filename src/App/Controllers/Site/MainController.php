@@ -11,6 +11,7 @@ namespace App\Controllers\Site;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class MainController {
 
@@ -22,6 +23,15 @@ class MainController {
         $app['assets']->addJs('/plugins/bootstrap-carousel/js/bootstrap.min.js');
         
         return $app['twig']->render('@site/index.html', $vars);
+    }
+
+    public function rss(Request $request, Application $app) {
+        $vars['posts'] = $app['posts']->getPublishedPosts();
+        $vars['galleries'] = $app['gallery']->getGalleries();
+
+        return new Response($app['twig']->render('@site/rss.xml', $vars), 200, 
+            array('Content-Type' => 'application/xml')
+        );
     }
     
 }

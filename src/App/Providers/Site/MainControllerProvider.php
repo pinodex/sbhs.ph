@@ -20,6 +20,9 @@ class MainControllerProvider implements ControllerProviderInterface {
         $controller->get('/', 'App\Controllers\Site\MainController::index')
             ->bind('site.index');
 
+        $controller->get('/rss.xml', 'App\Controllers\Site\MainController::rss')
+            ->bind('site.rss');
+
         return $controller;
     }
 
