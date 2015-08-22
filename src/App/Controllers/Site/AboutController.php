@@ -81,11 +81,9 @@ class AboutController {
 
         $vars['posts'] = $app['posts']->getPublishedByAuthor($id)->toArray();
         $vars['author'] = $author->toArray();
-
-        $description = $author->description ?: 'View posts by ' . $author->name;
-
-        $app['helper']->addMetaTag('description', $description);
-        $app['helper']->addOgTag('description', $description);
+        
+        $app['helper']->addMetaTag('description', $author->about ?: 'View posts by ' . $author->name);
+        $app['helper']->addOgTag('description', $author->about ?: 'View posts by ' . $author->name);
         
         return $app['twig']->render('@site/about/authors_view.html', $vars);
     }
