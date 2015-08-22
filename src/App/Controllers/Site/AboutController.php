@@ -20,18 +20,33 @@ class AboutController {
 
     public function history(Request $request, Application $app) {
         $vars['page_title'] = 'History';
+
+        $description = 'View the historical events inside San Bartolome High School.';
+
+        $app['helper']->addMetaTag('description', $description);
+        $app['helper']->addOgTag('description', $description);
         
         return $app['twig']->render('@site/about/history.html', $vars);
     }
 
     public function missionAndVision(Request $request, Application $app) {
         $vars['page_title'] = 'Mission and Vision';
+
+        $description = 'DepEd Mission and Vision.';
+
+        $app['helper']->addMetaTag('description', $description);
+        $app['helper']->addOgTag('description', $description);
         
         return $app['twig']->render('@site/about/mission-and-vision.html', $vars);
     }
 
     public function stats(Request $request, Application $app) {
         $vars['page_title'] = 'Stats';
+
+        $description = 'View statistics of Students Ratio, Student Data, Enrollment Rate, and Drop-out Rate.';
+
+        $app['helper']->addMetaTag('description', $description);
+        $app['helper']->addOgTag('description', $description);
         
         return $app['twig']->render('@site/about/stats.html', $vars);
     }
@@ -39,6 +54,11 @@ class AboutController {
     public function authors(Request $request, Application $app) {
         $vars['page_title'] = 'Authors';
         $vars['authors'] = $app['accounts']->getAccounts()->toArray();
+
+        $description = 'Authors';
+
+        $app['helper']->addMetaTag('description', $description);
+        $app['helper']->addOgTag('description', $description);
         
         return $app['twig']->render('@site/about/authors.html', $vars);
     }
@@ -61,6 +81,11 @@ class AboutController {
 
         $vars['posts'] = $app['posts']->getByAuthor($id)->toArray();
         $vars['author'] = $author->toArray();
+
+        $description = $author->description ?: 'View posts by ' . $author->name;
+
+        $app['helper']->addMetaTag('description', $description);
+        $app['helper']->addOgTag('description', $description);
         
         return $app['twig']->render('@site/about/authors_view.html', $vars);
     }

@@ -30,6 +30,7 @@
     {% for ogTag in app.helper.getOgTags() %}
         <meta property="og:{{ ogTag.name }}" content="{{ ogTag.content }}" />
     {% endfor %}
+    <meta property="og:image" content="{{ app.assets.get('/img/og.png') }}" />
     {% for css in app.assets.getSiteCss() %}
         <link rel="stylesheet" type="text/css" href="{{ css }}" />
     {% endfor %}

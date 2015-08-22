@@ -16,6 +16,11 @@ class PostsController {
 
     public function index(Request $request, Application $app) {
         $vars['page_title'] = 'Posts';
+
+        $description = 'Read the latest posts on San Bartolome High School.';
+
+        $app['helper']->addMetaTag('description', $description);
+        $app['helper']->addOgTag('description', $description);
         
         return $app['twig']->render('@site/posts/index.html', $vars);
     }
@@ -39,6 +44,7 @@ class PostsController {
         $vars['post'] = $post;
 
         $app['helper']->addMetaTag('description', $post->description ?: $app['posts']->truncateText($post->content));
+        $app['helper']->addOgTag('description', $post->description ?: $app['posts']->truncateText($post->content));
 
         if ($vars['author']) {
             $app['helper']->addMetaTag('author', $vars['author']->name);

@@ -21,6 +21,11 @@ class MainController {
 
         $app['assets']->addCss('/plugins/bootstrap-carousel/css/bootstrap.css');
         $app['assets']->addJs('/plugins/bootstrap-carousel/js/bootstrap.min.js');
+
+        $description = 'Official website of San Bartolome High School. Browse the latest updates inside and outside the school.';
+
+        $app['helper']->addMetaTag('description', $description);
+        $app['helper']->addOgTag('description', $description);
         
         return $app['twig']->render('@site/index.html', $vars);
     }

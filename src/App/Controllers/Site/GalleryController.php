@@ -17,6 +17,11 @@ class GalleryController {
     public function index(Request $request, Application $app) {
         $vars['page_title'] = 'Gallery';
         $vars['galleries'] = $app['gallery']->getGalleries();
+
+        $description = 'View the photos taken inside and outside the school.';
+
+        $app['helper']->addMetaTag('description', $description);
+        $app['helper']->addOgTag('description', $description);
         
         return $app['twig']->render('@site/gallery/index.html', $vars);
     }
@@ -42,6 +47,7 @@ class GalleryController {
 
         if ($gallery->description) {
             $app['helper']->addMetaTag('description', $gallery->description);
+            $app['helper']->addOgTag('description', $gallery->description);
         }
 
         if ($vars['author']) {
@@ -84,6 +90,7 @@ class GalleryController {
 
         if ($gallery->description) {
             $app['helper']->addMetaTag('description', $gallery->description);
+            $app['helper']->addOgTag('description', $gallery->description);
         }
 
         if ($vars['author']) {

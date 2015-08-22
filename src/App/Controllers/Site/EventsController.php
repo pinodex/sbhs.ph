@@ -33,6 +33,11 @@ class EventsController {
         }
 
         $vars['events'] = $events;
+
+        $description = 'View the events inside and outside the school.';
+
+        $app['helper']->addMetaTag('description', $description);
+        $app['helper']->addOgTag('description', $description);
         
         return $app['twig']->render('@site/events/index.html', $vars);
     }
