@@ -51,7 +51,11 @@ class PostsProvider implements ServiceProviderInterface {
     }
 
     public function getByAuthor($id) {
-        return Posts::where('author', $id)->get();
+        return Posts::where('author', $id)->orderBy('id', 'DESC')->get();
+    }
+
+    public function getPublishedByAuthor($id) {
+        return Posts::where('author', $id)->whereNotNull('published')->orderBy('id', 'DESC')->get();
     }
 
     public function getPublishedCount() {

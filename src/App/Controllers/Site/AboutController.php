@@ -79,7 +79,7 @@ class AboutController {
 
         $vars['page_title'] = $author->name . ' - Authors';
 
-        $vars['posts'] = $app['posts']->getByAuthor($id)->toArray();
+        $vars['posts'] = $app['posts']->getPublishedByAuthor($id)->toArray();
         $vars['author'] = $author->toArray();
 
         $description = $author->description ?: 'View posts by ' . $author->name;

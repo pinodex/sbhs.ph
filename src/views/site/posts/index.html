@@ -19,7 +19,7 @@
                         <div class="content">
                             <h2><a href="{{ path('site.posts.read', {id: post.id, slug: app.helper.makeSlug(post.title)}) }}">{{ post.title }}</a></h2>
                             <p class="meta">
-                                Posted on {{ post.published|date('M d, h:i a') }} 
+                                Posted on {{ post.published|date('M d, Y h:i a') }} 
                                 {% if postAuthor %}
                                     by <a href="">{{ postAuthor.name }}</a>
                                 {% endif %}
