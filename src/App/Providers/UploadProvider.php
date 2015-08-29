@@ -11,7 +11,6 @@ namespace App\Providers;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class UploadProvider implements ServiceProviderInterface {
 

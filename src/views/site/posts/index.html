@@ -1,35 +1,39 @@
 {% extends '@site/_layouts/default.html' %}
 
+{% set showBloggerFeed = true %}
+
 {% block content %}
     <div class="row">
         <div class="large-12 columns">
-            <div class="window clean">
+            <div class="window clean no-padding">
                 <h2 class="title">Posts</h2>
-            </div>
-            <div class="post-list">
-                {% for post in app.posts.getPublishedPosts() %}
-                    {% set postAuthor = app.accounts.getAccount(post.author) %}
-                    {% set postImage = app.posts.getFirstImageUrl(post.content) %}
-                    <div class="post">
-                        {% if postImage %}
-                            <div class="image" style="background-image: url({{ postImage }});"></div>
-                        {% else %}
-                            <div class="image"></div>
-                        {% endif %}
-                        <div class="content">
-                            <h2><a href="{{ path('site.posts.read', {id: post.id, slug: app.helper.makeSlug(post.title)}) }}">{{ post.title }}</a></h2>
-                            <p class="meta">
-                                Posted on {{ post.published|date('M d, Y h:i a') }} 
-                                {% if postAuthor %}
-                                    by <a href="">{{ postAuthor.name }}</a>
+                <div class="content">
+                    <div class="post-list">
+                        {% for post in app.posts.getPublishedPosts() %}
+                            {% set postAuthor = app.accounts.getAccount(post.author) %}
+                            {% set postImage = app.posts.getFirstImageUrl(post.content) %}
+                            <div class="post">
+                                {% if postImage %}
+                                    <div class="image" style="background-image: url({{ postImage }});"></div>
+                                {% else %}
+                                    <div class="image"></div>
                                 {% endif %}
-                            </p>
-                            <div class="description">
-                                {{ post.description ?: app.posts.truncateText(post.content) }}
+                                <div class="content">
+                                    <h2><a href="{{ path('site.posts.read', {id: post.id, slug: app.helper.makeSlug(post.title)}) }}">{{ post.title }}</a></h2>
+                                    <p class="meta">
+                                        Posted on {{ post.published|date('M d, Y h:i a') }} 
+                                        {% if postAuthor %}
+                                            by <a href="">{{ postAuthor.name }}</a>
+                                        {% endif %}
+                                    </p>
+                                    <div class="description">
+                                        {{ post.description ?: app.posts.truncateText(post.content) }}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                </div>
             </div>
         </div>
     </div>

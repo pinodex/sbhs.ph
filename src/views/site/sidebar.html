@@ -1,3 +1,41 @@
+{% if showBloggerFeed is defined %}
+    <div class="window clean no-padding">
+        <h2 class="title">
+            From <strong>The Paragon</strong>
+            <br /><small><a href="http://paragon.sbhs.ph">paragon.sbhs.ph</a></small>
+        </h2>
+        <div class="content">
+            <div class="post-cards">
+                {% for post in app.blogger_feed.get('http://paragon.sbhs.ph/feeds/posts/default?alt=rss') %}
+                    <div class="post">
+                        <div class="content">
+                            <h2><a href="{{ post.link }}">{{ post.title }}</a></h2>
+                            <div class="description">{{ app.posts.truncateText(post.content) }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="window clean no-padding">
+        <h2 class="title">
+            Mula sa <strong>Ang Ehemplo</strong>
+            <br /><small><a href="http://ehemplo.sbhs.ph">ehemplo.sbhs.ph</a></small>
+        </h2>
+        <div class="content">
+            <div class="post-cards">
+                {% for post in app.blogger_feed.get('http://ehemplo.sbhs.ph/feeds/posts/default?alt=rss') %}
+                    <div class="post">
+                        <div class="content">
+                            <h2><a href="{{ post.link }}">{{ post.title }}</a></h2>
+                            <div class="description">{{ app.posts.truncateText(post.content) }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}
 <div class="window">
     <h2 class="title">Upcoming Events</h2>
     <div class="content">
@@ -12,6 +50,8 @@
                     <p class="time">{{ event.datetime|date('h:i a') }}</p>
                     <div class="description">{{ event.description }}</div>
                 </div>
+            {% else %}
+                <div>No upcoming events yet.</div>
             {% endfor %}
         </div>
     </div>

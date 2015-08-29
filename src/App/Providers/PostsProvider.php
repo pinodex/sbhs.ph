@@ -85,7 +85,11 @@ class PostsProvider implements ServiceProviderInterface {
         }
 
         $post->content = $data['content'];
-        $post->author = $this->app['accounts']->getCurrentAccountId();
+
+        if (!$id) {
+            $post->author = $this->app['accounts']->getCurrentAccountId();
+        }
+        
         $post->saved = date('Y-m-d H:i:s');
 
         if ($data['post_type'] == 'publish') {

@@ -67,6 +67,7 @@ $app->register(new App\Providers\GalleryProvider());
 $app->register(new App\Providers\PhotosProvider());
 $app->register(new App\Providers\EventsProvider());
 $app->register(new App\Providers\BannersProvider());
+$app->register(new App\Providers\BloggerFeedProvider());
 
 $app['flashbag'] = $app->share(function () use ($app) {
     return $app['session']->getFlashBag();

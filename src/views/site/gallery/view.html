@@ -5,23 +5,30 @@
 {% block content %}
     <div class="row">
         <div class="large-12 columns">
-            <div class="window clean">
+            <div class="window clean no-padding">
                 <h2 class="title">{{ page_title }}</h2>
+                <div class="content">
+                    <div class="post-cards">
+                        {% if photos is empty %}
+                            This gallery is empty.
+                        {% endif %}
+                        <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1 gallery-photos">
+                            {% for photo in photos %}
+                                <li>
+                                    <a class="post" href="{{ path('site.gallery.view.photo', {id: gallery.id, slug: gallerySlug, photoId: photo.id}) }}" data-image="{{ app.upload.get(photo.file) }}" data-equalizer-watch>
+                                        <div class="image" style="background-image: url({{ photo.thumb ? app.upload.get(photo.thumb) : app.upload.get(photo.file) }});"></div>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="post-cards">
-                {% if photos is empty %}
-                    This gallery is empty.
-                {% endif %}
-                <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1 gallery-photos">
-                    {% for photo in photos %}
-                        <li>
-                            <a class="post" href="{{ path('site.gallery.view.photo', {id: gallery.id, slug: gallerySlug, photoId: photo.id}) }}" data-image="{{ app.upload.get(photo.file) }}" data-equalizer-watch>
-                                <div class="image" style="background-image: url({{ photo.thumb ? app.upload.get(photo.thumb) : app.upload.get(photo.file) }});"></div>
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="fb-like" data-href="{{ app.request.uri }}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
         </div>
     </div>
     <div class="row">

@@ -12,12 +12,19 @@ WebFont.load({
 
 $.fn.newsTicker = function(interval) {
     var _this = this;
+    var heights = [];
     
     _this.find('li:first-child').fadeIn();
 
     if(_this.find('li').length == 1) {
         return this;
     }
+
+    $.each(_this.find('li'), function() {
+        heights.push($(this).height());
+    });
+
+    _this.parent().css('height', Math.max.apply(Math, heights) + 10 + 'px');
 
     setInterval(function() {
         _this.find('li:visible').fadeOut(function() {
@@ -31,7 +38,7 @@ $.fn.newsTicker = function(interval) {
     }, interval);
 
     return this;
-}
+};
 
 if ($('.post-cards.authors').length) {
     $('.post-cards.authors .image').each(function() {
